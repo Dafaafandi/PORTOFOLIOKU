@@ -38,15 +38,6 @@ Route::get('/', function () {
     ];
 
     $projectCount = count($projects);
-    $experience = [
-        'title' => 'HCDEV',
-        'type' => 'Internship project · Petrokimia Gresik',
-        'company' => 'Mamorasoft · Fullstack Developer',
-        'description' => 'Mendukung pengembangan aplikasi HCDEV untuk kebutuhan Petrokimia Gresik dengan menangani perbaikan bug dan penambahan fitur menggunakan Flutter.',
-        'image' => 'HCDEV.png',
-        'stack' => ['Flutter', 'Bug fixing', 'Feature development'],
-        'status' => 'Project support · Kontribusi sebagai bagian dari tim',
-    ];
 
-    return view('portfolio', compact('projects', 'projectCount', 'experience'));
+    return view('portfolio', compact('projects', 'projectCount'));
 });

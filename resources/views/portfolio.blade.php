@@ -31,7 +31,6 @@
         </button>
         <nav class="site-nav" id="siteNav" aria-label="Navigasi utama">
             <a href="#work">Karya</a>
-            <a href="#experience">Pengalaman</a>
             <a href="#stack">Stack</a>
             <a href="#about">Tentang</a>
             <a href="#contact" class="nav-cta">Mari ngobrol <span>↗</span></a>
@@ -92,8 +91,7 @@
                     <span>{{ $projectCount }}</span></button>
                 <button class="filter-button" type="button" data-filter="website" aria-pressed="false">Website</button>
                 <button class="filter-button" type="button" data-filter="mobile" aria-pressed="false">Mobile</button>
-                <button class="filter-button" type="button" data-filter="backend"
-                    aria-pressed="false">Backend</button>
+                <button class="filter-button" type="button" data-filter="backend" aria-pressed="false">Backend</button>
                 <button class="filter-button" type="button" data-filter="ui" aria-pressed="false">UI
                     Design</button>
             </div>
@@ -186,35 +184,8 @@
                 saya.</p>
         </section>
 
-        <section class="experience-section section-shell reveal" id="experience" aria-labelledby="experience-title">
-            <div class="section-heading"><span class="section-number">02</span>
-                <div>
-                    <p class="eyebrow">Professional experience</p>
-                    <h2 id="experience-title">Project yang saya<br><em>dukung di industri.</em></h2>
-                </div>
-                <p class="section-intro">Pengalaman magang dengan kontribusi terarah di dalam tim pengembangan
-                    aplikasi.</p>
-            </div>
-            <article class="experience-card">
-                <div class="experience-image"><img src="{{ asset('images/' . $experience['image']) }}"
-                        alt="Tampilan project {{ $experience['title'] }}" loading="lazy" decoding="async"></div>
-                <div class="experience-content">
-                    <p class="project-type">{{ $experience['type'] }}</p>
-                    <h3>{{ $experience['title'] }}</h3>
-                    <p class="experience-company">{{ $experience['company'] }}</p>
-                    <p class="project-description">{{ $experience['description'] }}</p>
-                    <ul class="tags">
-                        @foreach ($experience['stack'] as $technology)
-                            <li>{{ $technology }}</li>
-                        @endforeach
-                    </ul>
-                    <p class="project-status">{{ $experience['status'] }}</p>
-                </div>
-            </article>
-        </section>
-
         <section class="statement-section section-shell reveal" id="about">
-            <div class="section-heading"><span class="section-number">03</span>
+            <div class="section-heading"><span class="section-number">02</span>
                 <div>
                     <p class="eyebrow">How I think</p>
                     <h2>Teknologi adalah alat.<br><em>Rasa ingin tahu adalah mesin.</em></h2>
@@ -232,7 +203,7 @@
         </section>
 
         <section class="stack-section section-shell reveal" id="stack">
-            <div class="section-heading"><span class="section-number">04</span>
+            <div class="section-heading"><span class="section-number">03</span>
                 <div>
                     <p class="eyebrow">Tools I use</p>
                     <h2>Stack yang sedang<br><em>saya kembangkan.</em></h2>
@@ -246,7 +217,7 @@
         </section>
 
         <section class="activity-section section-shell reveal" aria-labelledby="activity-title">
-            <div class="section-heading"><span class="section-number">05</span>
+            <div class="section-heading"><span class="section-number">04</span>
                 <div>
                     <p class="eyebrow">Currently building</p>
                     <h2 id="activity-title">Selalu ada hal baru<br><em>untuk dipelajari.</em></h2>
