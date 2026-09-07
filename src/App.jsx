@@ -321,7 +321,7 @@ export default function App() {
                     <div className="hero-aside reveal reveal-delay">
                         <div className="portrait-frame">
                             <img
-                                src="/images/DSC08576.JPG"
+                                src="/images/DSC08576.webp"
                                 alt="Foto Muhammad Abi Dafa Afandi"
                                 decoding="async"
                             />
