@@ -133,7 +133,8 @@ function ProjectShowcase({ project }) {
         <article className="showcase-slide is-active">
             <div className="showcase-visual">
                 <span className="showcase-kicker">
-                    PROJECT {project.number} / {project.category.toUpperCase()}
+                    PROJECT {project.number} /{" "}
+                    {project.categories.join(" + ").toUpperCase()}
                 </span>
                 <VuePhotoSlider
                     images={images}
@@ -163,7 +164,7 @@ function ProjectCard({ project, featured }) {
     return (
         <article
             className={`project-card${featured ? " project-card-featured" : ""} reveal`}
-            data-category={project.category}
+            data-category={project.categories.join(",")}
         >
             <div className="project-image">
                 <span className="project-index">{project.number}</span>
@@ -194,12 +195,14 @@ function WorkSection() {
     const [filter, setFilter] = useState("all");
     const [slide, setSlide] = useState(0);
     const visibleProjects = projects.filter(
-        (project) => filter === "all" || project.category === filter,
+        (project) => filter === "all" || project.categories.includes(filter),
     );
-    const current = projects[slide];
+    const current = visibleProjects[slide] || visibleProjects[0];
     const move = (direction) =>
         setSlide(
-            (value) => (value + direction + projects.length) % projects.length,
+            (value) =>
+                (value + direction + visibleProjects.length) %
+                visibleProjects.length,
         );
 
     return (
@@ -232,7 +235,10 @@ function WorkSection() {
                         type="button"
                         data-filter={value}
                         aria-pressed={filter === value}
-                        onClick={() => setFilter(value)}
+                        onClick={() => {
+                            setFilter(value);
+                            setSlide(0);
+                        }}
                     >
                         {label}
                         {value === "all" && <span>{projects.length}</span>}
@@ -256,7 +262,7 @@ function WorkSection() {
                         ←
                     </button>
                     <div className="showcase-dots">
-                        {projects.map((project, index) => (
+                        {visibleProjects.map((project, index) => (
                             <button
                                 key={project.number}
                                 type="button"
