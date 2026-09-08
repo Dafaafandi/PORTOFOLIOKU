@@ -3,7 +3,7 @@ import VuePhotoSlider from "./components/VuePhotoSlider";
 import { filters, projects } from "./data/projects";
 import "./styles/portfolio.css";
 
-const cvUrl = "/downloads/CV-Muhammad-Abi-Dafa-Afandi.docx";
+const cvUrl = "/downloads/CV%20Muhammad%20Abi%20Dafa%20Afandi.pdf";
 
 function useReveal() {
     useEffect(() => {
