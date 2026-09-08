@@ -27,6 +27,7 @@ body {
     font-family: var(--sans);
     font-size: 16px;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 a {
     color: inherit;
@@ -213,6 +214,33 @@ h2 em {
     align-items: center;
     padding: 14px 20px;
     font-weight: 800;
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+.button::after {
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 45%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    content: "";
+    transform: skewX(-20deg);
+    transition: left 0.45s ease;
+}
+.button:hover {
+    box-shadow: 7px 7px 0 var(--ink);
+    transform: translate(-3px, -3px);
+}
+.button:hover::after {
+    left: 125%;
+}
+.button span {
+    position: relative;
+    z-index: 1;
 }
 .button-accent {
     background: var(--acid);
@@ -243,6 +271,24 @@ h2 em {
     padding: 12px;
     background: var(--ink);
     transform: rotate(3deg);
+    transition:
+        transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.45s ease;
+}
+.portrait-frame::after {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+        rgba(199, 243, 107, 0.22),
+        transparent 28%
+    );
+    content: "";
+    pointer-events: none;
+}
+.portrait-frame:hover {
+    box-shadow: 16px 16px 0 rgba(16, 18, 17, 0.12);
+    transform: rotate(0) translateY(-8px);
 }
 .portrait-frame::before {
     position: absolute;
@@ -345,6 +391,9 @@ h2 em {
     min-width: max-content;
     animation: marquee 28s linear infinite;
 }
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
 .marquee b {
     color: var(--paper);
     font-size: 1rem;
@@ -408,6 +457,10 @@ h2 em {
         background 0.2s ease,
         border-color 0.2s ease,
         color 0.2s ease;
+    transform: translateY(0);
+}
+.filter-button:hover {
+    transform: translateY(-3px);
 }
 .filter-button span {
     margin-left: 5px;
@@ -433,6 +486,28 @@ h2 em {
     overflow: hidden;
     background: var(--ink);
     color: var(--paper);
+    isolation: isolate;
+}
+.project-showcase::before {
+    position: absolute;
+    top: var(--pointer-y, 50%);
+    left: var(--pointer-x, 50%);
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(199, 243, 107, 0.12),
+        transparent 68%
+    );
+    content: "";
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.project-showcase:hover::before {
+    opacity: 1;
 }
 .showcase-slide {
     display: none;
@@ -676,6 +751,39 @@ h2 em {
 .project-card:nth-child(2) {
     margin-top: 75px;
 }
+.project-card {
+    position: relative;
+    isolation: isolate;
+    transition: transform 0.35s ease;
+}
+.project-card:hover {
+    transform: translateY(-8px);
+}
+.project-card::before {
+    position: absolute;
+    top: var(--pointer-y, 50%);
+    left: var(--pointer-x, 50%);
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(199, 243, 107, 0.1),
+        transparent 68%
+    );
+    content: "";
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.project-card:hover::before {
+    opacity: 1;
+}
+.project-card > * {
+    position: relative;
+    z-index: 1;
+}
 .project-card-featured {
     display: grid;
     grid-column: 1 / -1;
@@ -902,6 +1010,7 @@ h2 em {
     border-radius: 50%;
     background: var(--acid);
     box-shadow: 0 0 0 5px rgba(199, 243, 107, 0.2);
+    animation: pulse 2s ease-in-out infinite;
 }
 .activity-list p {
     display: flex;
@@ -974,6 +1083,40 @@ h2 em {
 }
 .reveal-delay {
     animation-delay: 0.25s;
+}
+.hero-intro > * {
+    opacity: 0;
+    animation: hero-enter 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.hero-intro .kicker {
+    animation-delay: 0.05s;
+}
+.hero-intro .hero-role {
+    animation-delay: 0.14s;
+}
+.hero-intro h1 {
+    animation-delay: 0.23s;
+}
+.hero-intro .hero-copy {
+    animation-delay: 0.32s;
+}
+.hero-intro .hero-actions {
+    animation-delay: 0.41s;
+}
+@keyframes hero-enter {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes pulse {
+    50% {
+        box-shadow: 0 0 0 9px rgba(199, 243, 107, 0);
+    }
 }
 @keyframes reveal {
     to {
@@ -1192,6 +1335,10 @@ h2 em {
         transition: none !important;
     }
     .reveal {
+        opacity: 1;
+        transform: none;
+    }
+    .hero-intro > * {
         opacity: 1;
         transform: none;
     }

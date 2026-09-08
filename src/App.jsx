@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import VuePhotoSlider from "./components/VuePhotoSlider";
 import { filters, projects } from "./data/projects";
 import "./styles/portfolio.css";
@@ -24,6 +24,33 @@ function useReveal() {
         );
         items.forEach((item) => observer.observe(item));
         return () => observer.disconnect();
+    }, []);
+}
+
+function usePointerGlow() {
+    useEffect(() => {
+        const targets = document.querySelectorAll(
+            ".project-card, .project-showcase, .portrait-frame",
+        );
+        const updateGlow = (event) => {
+            const target = event.currentTarget;
+            const bounds = target.getBoundingClientRect();
+            target.style.setProperty(
+                "--pointer-x",
+                `${event.clientX - bounds.left}px`,
+            );
+            target.style.setProperty(
+                "--pointer-y",
+                `${event.clientY - bounds.top}px`,
+            );
+        };
+        targets.forEach((target) =>
+            target.addEventListener("pointermove", updateGlow),
+        );
+        return () =>
+            targets.forEach((target) =>
+                target.removeEventListener("pointermove", updateGlow),
+            );
     }, []);
 }
 
@@ -273,6 +300,7 @@ function WorkSection() {
 
 export default function App() {
     useReveal();
+    usePointerGlow();
     return (
         <>
             <a className="skip-link" href="#content">
