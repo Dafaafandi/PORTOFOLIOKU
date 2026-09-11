@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import VuePhotoSlider from "./components/VuePhotoSlider";
 import { filters, projects } from "./data/projects";
 import "./styles/portfolio.css";
@@ -577,6 +578,7 @@ export default function App() {
                 </div>
             </footer>
             <Analytics />
+            <SpeedInsights />
         </>
     );
 }
