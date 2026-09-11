@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import VuePhotoSlider from "./components/VuePhotoSlider";
 import { filters, projects } from "./data/projects";
 import "./styles/portfolio.css";
@@ -575,6 +576,7 @@ export default function App() {
                     </a>
                 </div>
             </footer>
+            <Analytics />
         </>
     );
 }
